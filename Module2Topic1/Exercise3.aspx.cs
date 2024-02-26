@@ -9,9 +9,18 @@ namespace Module1Exercise1
 {
     public partial class Exercise3 : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void DisplayGrade(object sender, EventArgs e)
         {
-            // TODO 3.3 Set the text value of the finalGrade label to "Submit your grade percentage to see your final grade!". Watch out for post backs
+            double grade = int.Parse(percentageGrade.Text);
+            if (grade <= 60)
+            {
+                grade = 5.00;
+            }
+            else if (grade >= 61 && grade <= 70)
+            {
+                grade = 3.00;
+            }
+            finalGrade.Text = grade.ToString();
         }
     }
 }
