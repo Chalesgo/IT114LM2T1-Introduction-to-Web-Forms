@@ -13,21 +13,30 @@
         <asp:TextBox runat="server" ID="fullName" /><br />
         <%-- Todo 4.1 Add a validator that makes sure the text box is not empty --%>
         <%-- Hint: https://www.tutorialspoint.com/asp.net/asp.net_validators.htm#:~:text=RequiredFieldValidator%20Control --%>
-
+        <asp:RequiredFieldValidator ID="rfvfullname" runat="server" ControlToValidate ="fullName" ErrorMessage="Empty textbox">
+        </asp:RequiredFieldValidator>
+        
         <asp:Label runat="server" Text="Age"></asp:Label><br />
         <asp:TextBox runat="server" ID="age" TextMode="Number" /><br />
         <%-- Todo 4.2 Add a range validator that checks if the value inputted in the text box is within 0 and 100--%>
         <%-- Hint: https://www.tutorialspoint.com/asp.net/asp.net_validators.htm#:~:text=RangeValidator%20Control--%>
-
+        <asp:RangeValidator ID="rvage" runat="server" ControlToValidate="age" ErrorMessage="Enter your age" MaximumValue="100" MinimumValue="1" Type="Integer">
+        </asp:RangeValidator>
+        
         <asp:Label runat="server" Text="Email"></asp:Label><br />
         <asp:TextBox runat="server" ID="email" /><br />
         <%-- Todo 4.3 Add a regex validator that checks if the inputted value is a valid email. The regex for validating email is /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ --%>
         <%-- Hint: https://www.tutorialspoint.com/asp.net/asp.net_validators.htm#:~:text=The%20RegularExpressionValidator%20allows --%>
-
+        <asp:RegularExpressionValidator ID="revemail" runat="server" ErrorMessage="Invalid E-mail" ValidationExpression="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ValidationGroup="email">
+        </asp:RegularExpressionValidator>
+        
         <asp:Label runat="server" Text="Confirm Email"></asp:Label><br />
         <asp:TextBox runat="server" ID="confirmEmail" /><br />
         <%-- Todo 4.4 Add a compare validator that checks if the confirmation email is the same as the original email --%>
         <%-- Hint: https://www.tutorialspoint.com/asp.net/asp.net_validators.htm#:~:text=CompareValidator%20Control --%>
+        <asp:CompareValidator ID="cvConfirmEmail" runat="server" ErrorMessage="E-mail does not match" ControlToValidate="confirmEmail" 
+        ControlToCompare="email" Operator="Equal" ValidationGroup="emailValidation">
+        </asp:CompareValidator>
 
         <asp:Button Text="Submit" runat="server" UseSubmitBehavior="true" />
         <asp:Label ID="result" runat="server" />
